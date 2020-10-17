@@ -37,6 +37,14 @@ let eyesColors = [
   `green`
 ];
 
+let fireballWrap = [
+  `#ee4830`,
+  `#30a8ee`,
+  `#5ce6c0`,
+  `#e848d5`,
+  `#e6e848`
+];
+
 let userDialog = document.querySelector(`.setup`);
 userDialog.classList.remove(`hidden`);
 
@@ -83,3 +91,74 @@ for (let i = 0; i < wizards.length; i++) {
 similarListElement.appendChild(fragment);
 
 userDialog.querySelector(`.setup-similar`).classList.remove(`hidden`);
+
+
+let setupOpen = document.querySelector(`.setup-open`);
+let setup = document.querySelector(`.setup`);
+let setupClose = setup.querySelector(`.setup-close`);
+let setupUserName = document.querySelector(`.setup-user-name`);
+let setupWizard = document.querySelector(`.setup-wizard`);
+let wizardCoat = setupWizard.querySelector(`.wizard-coat`);
+let hiddenWizardCoat = document.querySelector(`[name="coat-color"]`);
+let wizardEyes = setupWizard.querySelector(`.wizard-eyes`);
+let hiddenWizardEyes = document.querySelector(`[name="eyes-color"]`);
+let setupFireballWrap = document.querySelector(`.setup-fireball-wrap`);
+let hiddenFireballWrap = document.querySelector(`[name="fireball-color"]`);
+
+
+let onPopupEscPress = function (evt) {
+  if (evt.key === `Escape` && document.activeElement !== setupUserName) {
+    evt.preventDefault();
+    closePopup();
+  }
+};
+
+let openPopup = function () {
+  setup.classList.remove(`hidden`);
+
+  document.addEventListener(`keydown`, onPopupEscPress);
+};
+
+let closePopup = function () {
+  setup.classList.add(`hidden`);
+
+  document.removeEventListener(`keydown`, onPopupEscPress);
+};
+
+setupOpen.addEventListener(`click`, function () {
+  openPopup();
+});
+
+setupOpen.addEventListener(`keydown`, function (evt) {
+  if (evt.key === `Enter`) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener(`click`, function () {
+  closePopup();
+});
+
+setupClose.addEventListener(`keydown`, function (evt) {
+  if (evt.key === `Enter`) {
+    closePopup();
+  }
+});
+
+wizardCoat.addEventListener(`click`, function () {
+  let randomCoatColor = getRandomArrayElement(coatColors);
+  wizardCoat.style.fill = randomCoatColor;
+  hiddenWizardCoat.value = randomCoatColor;
+});
+
+wizardEyes.addEventListener(`click`, function () {
+  let randomEyesColor = getRandomArrayElement(eyesColors);
+  wizardEyes.style.fill = randomEyesColor;
+  hiddenWizardEyes.value = randomEyesColor;
+});
+
+setupFireballWrap.addEventListener(`click`, function () {
+  let randomFireballWrap = getRandomArrayElement(fireballWrap);
+  setupFireballWrap.style.backgroundColor = randomFireballWrap;
+  hiddenFireballWrap.value = randomFireballWrap;
+});
