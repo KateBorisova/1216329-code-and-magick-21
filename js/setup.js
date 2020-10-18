@@ -37,7 +37,7 @@ let eyesColors = [
   `green`
 ];
 
-let fireballColor = [
+let fireballColors = [
   `#ee4830`,
   `#30a8ee`,
   `#5ce6c0`,
@@ -102,7 +102,7 @@ let wizardCoat = setupWizard.querySelector(`.wizard-coat`);
 let hiddenWizardCoat = document.querySelector(`[name="coat-color"]`);
 let wizardEyes = setupWizard.querySelector(`.wizard-eyes`);
 let hiddenWizardEyes = document.querySelector(`[name="eyes-color"]`);
-let setupFireballInput = document.querySelector(`.setup-fireball-wrap`);
+let setupFireballWrap = document.querySelector(`.setup-fireball-wrap`);
 let hiddenFireballInput = document.querySelector(`[name="fireball-color"]`);
 
 
@@ -157,8 +157,8 @@ wizardEyes.addEventListener(`click`, function () {
   hiddenWizardEyes.value = randomEyesColor;
 });
 
-setupFireballInput.addEventListener(`click`, function () {
-  let randomFireballColor = getRandomArrayElement(fireballColor);
-  setupFireballInput.style.backgroundColor = randomFireballColor;
+setupFireballWrap.addEventListener(`click`, function () {
+  let randomFireballColor = getRandomArrayElement(fireballColors);
+  setupFireballWrap.style.backgroundColor = randomFireballColor;
   hiddenFireballInput.value = randomFireballColor;
 });
